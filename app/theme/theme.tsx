@@ -2,7 +2,7 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Quicksand } from "next/font/google";
-const quickSand = Quicksand({ subsets: ["latin"],display:'swap' });
+const quickSand = Quicksand({ subsets: ["latin"], display: 'swap' });
 const lightTheme = createTheme({
     palette: {
         mode: 'light',
@@ -19,8 +19,8 @@ const lightTheme = createTheme({
             main: '#EEEEEE'
         }
     }, typography: {
-        fontFamily:quickSand.style.fontFamily
-    }
+        fontFamily: quickSand.style.fontFamily
+    },
 })
 const MainTheme = ({ children }: { children: JSX.Element }) => {
     return (

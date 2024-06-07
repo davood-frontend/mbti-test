@@ -114,22 +114,24 @@ const QuestionPages = (): JSX.Element => {
         console.log(finalResults)
     }, [finalResults])
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }} >
-                <IconButton color='info' size='large' onClick={() => questionNumberHandler('prev')} disabled={questionNumber === 0}>
-                    <KeyboardArrowLeftIcon />
-                </IconButton>
-            </Box>
-            <SwipeableViews disabled index={questionNumber} >
-                {mbtiQuestions.map((item, index) => (
-                    <QuestionPage number={index} data={item} changeHandler={changeHandler} />
-                ))}
-                <FinalPage buttonLoading={buttonLoading} showResult={showResult} setButtonLoading={setButtonLoading}/>
-            </SwipeableViews>
-            <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-                <IconButton color='info' size='large' onClick={() => questionNumberHandler('next')} disabled={questionNumber === mbtiQuestions.length}>
-                    <KeyboardArrowRightIcon />
-                </IconButton>
+        <Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }} >
+                    <IconButton color='info' size='large' onClick={() => questionNumberHandler('prev')} disabled={questionNumber === 0}>
+                        <KeyboardArrowLeftIcon />
+                    </IconButton>
+                </Box>
+                <SwipeableViews disabled index={questionNumber} >
+                    {mbtiQuestions.map((item, index) => (
+                        <QuestionPage number={index} data={item} changeHandler={changeHandler} />
+                    ))}
+                    <FinalPage buttonLoading={buttonLoading} showResult={showResult} setButtonLoading={setButtonLoading} />
+                </SwipeableViews>
+                <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+                    <IconButton color='info' size='large' onClick={() => questionNumberHandler('next')} disabled={questionNumber === mbtiQuestions.length}>
+                        <KeyboardArrowRightIcon />
+                    </IconButton>
+                </Box>
             </Box>
         </Box>
     );

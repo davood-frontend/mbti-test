@@ -11,6 +11,7 @@ const FinalPage = ({ showResult, buttonLoading, setButtonLoading }: { showResult
         setTimeout(() => {
             setButtonLoading(false)
             setCheck(true)
+            showResult()
         }, 3000);
     }
     return (

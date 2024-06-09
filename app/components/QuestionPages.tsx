@@ -1,17 +1,15 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { Box, IconButton, Button, Typography } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import QuestionPage from './QuestionPage';
 import SwipeableViews from 'react-swipeable-views'
 import { mbtiQuestions } from './constants/questions';
 import FinalPage from './common/FinalPage';
-
-
+import { useMainContext } from '../context/mainContext';
 const QuestionPages = (): JSX.Element => {
-    const [questionNumber, setQuestionNumber] = useState(0)
-    const [storeQuestions, setStoreQuestions] = useState({ ie: 0, ns: 0, ft: 0, jp: 0 })
+    const { questionNumber, setQuestionNumber, storeQuestions, setStoreQuestions } = useMainContext()
     const [finalResults, setFinalResults] = useState<{ type: string, percentage: { type: string, percentage: number }[] }>({ type: '', percentage: [] })
     const [buttonLoading, setButtonLoading] = useState(false)
     const changeHandler = (item: number, questionType: string, prev: any, revalidate: boolean) => {

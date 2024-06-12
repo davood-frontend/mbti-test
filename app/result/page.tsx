@@ -17,8 +17,7 @@ const Template = ({ children, height, alignItems }: { children: JSX.Element, hei
 
     )
 }
-
-const colors = [['#c45161', '#e094a0'], ['#5e62a9', '#434279'], ['#cbc7d8', '#8db7d2'], ['#f2b6c0', '#f2dde1']]
+const colors = [['#c7522a', '#b8cdab'], ['#e5c185', '#74a892'], ['#f0daa5', '#008585'], ['#fbf2c4', '#004343']]
 const page = () => {
     const ISSERVER = typeof window === "undefined";
     let mianData = !ISSERVER && localStorage.getItem('mbtiData') as any

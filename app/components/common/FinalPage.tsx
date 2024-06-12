@@ -4,7 +4,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import CheckIcon from '@mui/icons-material/Check';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import Link from 'next/link';
-const FinalPage = ({ showResult, buttonLoading, setButtonLoading }: { showResult: () => void, buttonLoading: boolean, setButtonLoading: React.Dispatch<React.SetStateAction<boolean>> }) => {
+import { useMainContext } from '@/app/context/mainContext';
+const FinalPage = () => {
+    const {showResult,buttonLoading,setButtonLoading} = useMainContext()
     const [check, setCheck] = useState(false)
     const handleChange = () => {
         !check && setButtonLoading(true)
@@ -12,6 +14,7 @@ const FinalPage = ({ showResult, buttonLoading, setButtonLoading }: { showResult
             setButtonLoading(false)
             setCheck(true)
             showResult()
+            
         }, 3000);
     }
     return (

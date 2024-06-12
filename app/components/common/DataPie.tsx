@@ -1,6 +1,6 @@
 import React from 'react';
 import { PieChart } from '@mui/x-charts';
-const DataPie = () => {
+const DataPie = ({ data, colors }: { data: any, colors: string[] }) => {
     const valueFormatter = (value: number) => `${value}%`;
     // colors={['red','blue']}
     return (
@@ -9,10 +9,7 @@ const DataPie = () => {
             width={360}
             series={[
                 {
-                    data: [
-                        { id: 0, value: 45, label: 'Introversion' },
-                        { id: 1, value: 55, label: 'Extroversion' },
-                    ],      
+                    data: data,
                     innerRadius: 2,
                     outerRadius: 70,
                     paddingAngle: 3,
@@ -24,7 +21,7 @@ const DataPie = () => {
 
                 }
             ]}
-
+            colors={colors}
         />
     );
 };

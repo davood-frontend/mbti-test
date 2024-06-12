@@ -1,23 +1,37 @@
 'use client'
 import { Box } from '@mui/material';
-import React from 'react';
-import { Paper, Typography, Avatar } from '@mui/material';
+import React, { useEffect, useRef } from 'react';
+import { Typography, Avatar } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import infp from '@/app/assets/types/INFP.jfif'
-import DataBar from '../components/common/DataBar';
 import DataPie from '../components/common/DataPie';
 import Image from 'next/image';
 import Grid from '@mui/material/Unstable_Grid2'
+import { typeSymbole } from '../constants/typeSymbols';
+import BasicSparkLine from '../components/common/DataSparkline';
+import Typed from 'typed.js';
 const Template = ({ children, height, alignItems }: { children: JSX.Element, height: number, alignItems: string }) => {
     return (
-        <Box sx={{ height, display: 'flex', alignItems: alignItems, justifyContent: 'center', boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', border: `1px solid ${grey[200]}`, borderRadius: 2, backgroundColor: 'white', overflow: 'auto' }}>
+        <Box sx={{ height, display: 'flex', alignItems: alignItems, justifyContent: 'left', boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;', border: `1px solid ${grey[200]}`, borderRadius: 2, backgroundColor: 'white', overflow: 'auto' }}>
             {children}
         </Box>
 
     )
 }
+
+const colors = [['#c45161', '#e094a0'], ['#5e62a9', '#434279'], ['#cbc7d8', '#8db7d2'], ['#f2b6c0', '#f2dde1']]
 const page = () => {
 
+    let mianData = localStorage.getItem('mbtiData') as any
+    mianData = JSON.parse(mianData)
+    const typeData = typeSymbole(mianData.type.toUpperCase())
+    const typedInfo = [`${typeData?.info}`]
+    const textRef = useRef(null)
+    useEffect(() => {
+        const typed = new Typed(textRef.current, { strings: typedInfo, typeSpeed: 15, showCursor: false })
+        return () => {
+            typed.destroy()
+        }
+    }, [])
     return (
         <Box sx={{ height: '100vh', backgroundColor: '#F9F5F4', display: 'flex', justifyContent: 'center', alignItems: 'start' }}>
             <Grid container spacing={2} width={1} sx={{ pt: 2, px: 1 }}>
@@ -25,47 +39,50 @@ const page = () => {
                     <Template height={300} alignItems='start'>
                         <Box sx={{ height: 1, display: 'flex', width: 1, justifyContent: 'end' }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', width: 1, flexDirection: 'column', justifyContent: 'center', px: 2, backgroundColor: 'primary.main' }}>
-                                <Typography variant='h3' mt={2} color='success.light'>
-                                    INFP
+                                <Typography variant='h3' mt={2} sx={{ color: typeData?.color }}>
+                                    {typeData?.label}
                                 </Typography>
-                                {/* <Typography variant='subtitle2' mt={1} color='success.light'>
-                                    Someone who is quiet, but thinks all the time instead of those who don't.
-                                </Typography> */}
                             </Box>
-                            <Avatar sx={{ height: 1, width: 200, borderRadius: 2 }} variant='rounded'>
-                                <Image src={infp} fill style={{ objectFit: 'cover' }} alt='' />
+                            <Avatar sx={{ height: 1, width: 200, borderRadius: 0 }} variant='rounded'>
+                                <Image src={typeData?.img} fill style={{ objectFit: 'cover' }} alt='' />
                             </Avatar>
                         </Box>
                     </Template>
                 </Grid>
                 <Grid xs={9}>
                     <Template height={300} alignItems='start'>
-                        <Box sx={{ p: 2, textAlign: 'justify' }}>
-                            <Typography variant='subtitle1' fontWeight={450} fontSize={18}>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, maiores esse fugit voluptatum dicta veritatis sequi nulla tempore consequuntur consequatur dolore dolor, eos itaque doloremque, repudiandae laboriosam! Aliquid laborum commodi maxime repudiandae sapiente nesciunt pariatur, maiores distinctio ipsam ut ipsum cupiditate iure quo ducimus eius eligendi aperiam, vero neque id mollitia. Unde delectus architecto dignissimos suscipit vero quisquam aliquam, laboriosam iste est explicabo quas in nisi tempore culpa dolorem aperiam sapiente doloribus, assumenda ullam? Facere, consequuntur. Excepturi eius voluptatem placeat, qui aperiam optio libero sunt voluptas tempore, dolor sequi, officiis mollitia hic cupiditate eum pariatur veniam aliquid itaque dolorem odio explicabo impedit. Excepturi libero dolore aspernatur voluptatibus magnam delectus facilis tempore cupiditate, architecto error hic, doloremque quia laboriosam eius, adipisci ducimus earum. Odio ducimus, magnam quidem deleniti eaque, sint saepe tempore nostrum veniam possimus placeat sapiente architecto necessitatibus alias dolore ab eligendi sequi praesentium? Ullam, dolorem. Porro quaerat consequatur dolores odio, itaque necessitatibus a cumque totam voluptatibus eaque non rerum hic doloremque tenetur velit vitae impedit, minima quisquam ex aperiam voluptate, sequi inventore eum quis! Quia, officia illo! Omnis sequi odit eveniet nihil architecto ipsum possimus eaque odio quaerat ducimus quos dolorem corrupti hic, itaque obcaecati alias veniam ex accusamus doloremque enim suscipit vitae consectetur iusto commodi. Praesentium magnam aut, iusto cum nemo sint possimus placeat culpa fuga sequi impedit laboriosam iure sapiente nobis voluptatem libero repudiandae enim tempora cumque? Atque facere repellendus obcaecati dolore cum quia asperiores eveniet laboriosam, eum quis, rerum ipsa! Eaque quis fugiat cum debitis ipsam reiciendis facilis veniam dicta. Incidunt illum voluptates vitae fugit corporis. Cumque harum praesentium veniam voluptates nemo maiores, quis numquam corrupti atque eveniet laudantium quibusdam! Veniam earum harum sit neque quo libero quos obcaecati explicabo totam magnam saepe eaque, fugit exercitationem officia beatae perspiciatis quia aliquid illo sapiente eos illum quibusdam.
-                            </Typography>
-                        </Box>
+                        <Grid container alignItems='center'>
+                            <Grid xs={9}>
+                                <BasicSparkLine />
+                            </Grid>
+                            <Grid xs={3} paddingRight={3}>
+                                <Box sx={{ border: `1px solid ${grey[300]}`, p: 2, borderRadius: 3, }}>
+                                    <Typography variant='h6' sx={{ color: grey[700] }}>
+                                        this chart shows how much of society has each type filled
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
                     </Template>
                 </Grid>
-                <Grid xs={12}>
+                <Grid xs={6}>
                     <Template height={380} alignItems='center'>
                         <Grid container width={1} height={1} alignItems='center' rowSpacing={3} >
-                            <Grid xs={6} container>
-                                <Grid xs={6}>
-                                    <DataPie />
+                            {mianData.percentage.map((item: object[], index: number) => (
+                                <Grid xs={6} key={index}>
+                                    <DataPie data={item} colors={colors[index]} />
                                 </Grid>
-                                <Grid xs={6}>
-                                    <DataPie />
-                                </Grid>
-                                <Grid xs={6}>
-                                    <DataPie />
-                                </Grid>
-                                <Grid xs={6}>
-                                    <DataPie />
-                                </Grid>
-                            </Grid>
+                            ))}
+
 
                         </Grid>
+                    </Template>
+                </Grid>
+                <Grid xs={6}>
+                    <Template height={380} alignItems='start'>
+                        <Box sx={{ p: 2, textAlign: 'justify' }}>
+                            <Typography variant='subtitle1' fontWeight={500} fontSize={18} ref={textRef} textAlign='start' display='inline' />
+                        </Box>
                     </Template>
                 </Grid>
             </Grid>

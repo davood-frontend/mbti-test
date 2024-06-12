@@ -68,7 +68,7 @@ const page = () => {
                 <Grid xs={6}>
                     <Template height={380} alignItems='center'>
                         <Grid container width={1} height={1} alignItems='center' rowSpacing={3} >
-                            {mianData.percentage.map((item: object[], index: number) => (
+                            {mianData?.percentage?.map((item: object[], index: number) => (
                                 <Grid xs={6} key={index}>
                                     <DataPie data={item} colors={colors[index]} />
                                 </Grid>

@@ -23,7 +23,7 @@ const page = () => {
     const ISSERVER = typeof window === "undefined";
     let mianData = !ISSERVER && localStorage.getItem('mbtiData') as any
     mianData = JSON.parse(mianData)
-    const typeData = typeSymbole(mianData.type.toUpperCase())
+    const typeData = typeSymbole(mianData?.type.toUpperCase())
     const typedInfo = [`${typeData?.info}`]
     const textRef = useRef(null)
     useEffect(() => {

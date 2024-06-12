@@ -19,6 +19,7 @@ type finalResultsType = {
     percentage: { label: string, value: number }[][]
 }
 const MainContext = createContext<cotnextType | null>(null)
+const ISSERVER = typeof window === "undefined";
 
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [questionNumber, setQuestionNumber] = useState(0)
@@ -92,7 +93,6 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         }
         return { type: type, percentage: percentage }
     }
-
     const showResult = () => {
         const temperarayData1 = test(storeQuestions.ie, ['Introversion', 'Extroversion'], ['i', 'e'])
         const temperarayData2 = test(storeQuestions.ns, ['Intuitive', 'Sensing'], ['n', 's'])
@@ -101,7 +101,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         const permanentData = [...temperarayData1.percentage, ...temperarayData2.percentage, ...temperarayData3.percentage, ...temperarayData4.percentage]
         const type = temperarayData1.type + temperarayData2.type + temperarayData3.type + temperarayData4.type
         setFinalResults({ type: type, percentage: permanentData })
-        localStorage.setItem('mbtiData', JSON.stringify({ type: type, percentage: permanentData }))
+        !ISSERVER && localStorage.setItem('mbtiData', JSON.stringify({ type: type, percentage: permanentData }))
     }
 
     return (

@@ -20,8 +20,8 @@ const Template = ({ children, height, alignItems }: { children: JSX.Element, hei
 
 const colors = [['#c45161', '#e094a0'], ['#5e62a9', '#434279'], ['#cbc7d8', '#8db7d2'], ['#f2b6c0', '#f2dde1']]
 const page = () => {
-
-    let mianData = localStorage.getItem('mbtiData') as any
+    const ISSERVER = typeof window === "undefined";
+    let mianData = !ISSERVER && localStorage.getItem('mbtiData') as any
     mianData = JSON.parse(mianData)
     const typeData = typeSymbole(mianData.type.toUpperCase())
     const typedInfo = [`${typeData?.info}`]

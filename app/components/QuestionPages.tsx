@@ -9,7 +9,7 @@ import { mbtiQuestions } from './constants/questions';
 import FinalPage from './common/FinalPage';
 import { useMainContext } from '../context/mainContext';
 const QuestionPages = (): JSX.Element => {
-    const { questionNumber, finalResults, questionNumberHandler,showResult } = useMainContext()
+    const { questionNumber, finalResults, questionNumberHandler } = useMainContext()
 
 
     useEffect(() => {

@@ -6,7 +6,7 @@ const DataPie = ({ data, colors }: { data: any, colors: string[] }) => {
     return (
         <PieChart
             height={150}
-            width={360}
+            width={320}
             series={[
                 {
                     data: data,
@@ -16,7 +16,7 @@ const DataPie = ({ data, colors }: { data: any, colors: string[] }) => {
                     cornerRadius: 3,
                     startAngle: -180,
                     endAngle: 180,
-                    cx: 100,
+                    cx: 70,
                     cy: 70,
 
                 }

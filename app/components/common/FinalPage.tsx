@@ -18,8 +18,8 @@ const FinalPage = () => {
         }, 3000);
     }
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column',height:'100vh'}}>
-            <Typography variant='h3' pb={5} textAlign='center' fontWeight={400}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: '100vh' }}>
+            <Typography variant='h3' pb={10} textAlign='center' fontWeight={400}>
                 Congrags and well done, the test is finished. <br /> click on the following button to see the results.
             </Typography>
             <Link href={!check ? '/' : 'result'}>

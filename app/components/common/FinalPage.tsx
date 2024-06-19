@@ -6,7 +6,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import Link from 'next/link';
 import { useMainContext } from '@/app/context/mainContext';
 const FinalPage = () => {
-    const {showResult,buttonLoading,setButtonLoading} = useMainContext()
+    const { showResult, buttonLoading, setButtonLoading } = useMainContext()
     const [check, setCheck] = useState(false)
     const handleChange = () => {
         !check && setButtonLoading(true)
@@ -14,12 +14,12 @@ const FinalPage = () => {
             setButtonLoading(false)
             setCheck(true)
             showResult()
-            
+
         }, 3000);
     }
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', pt: 30 }}>
-            <Typography variant='h4' pb={5} textAlign='center'>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column',height:'100vh'}}>
+            <Typography variant='h3' pb={5} textAlign='center' fontWeight={400}>
                 Congrags and well done, the test is finished. <br /> click on the following button to see the results.
             </Typography>
             <Link href={!check ? '/' : 'result'}>

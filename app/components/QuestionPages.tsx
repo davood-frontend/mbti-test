@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from 'react';
-import { Box, IconButton } from '@mui/material';    
+import { Box, IconButton, Button } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import QuestionPage from './QuestionPage';
@@ -18,7 +18,7 @@ const QuestionPages = (): JSX.Element => {
     return (
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }} >
+                <Box sx={{ display: 'flex', alignItems: 'center', px: { xs: 1, sm: 2 } }} >
                     <IconButton color='info' size='large' onClick={() => questionNumberHandler('prev')} disabled={questionNumber === 0}>
                         <KeyboardArrowLeftIcon />
                     </IconButton>
@@ -29,7 +29,8 @@ const QuestionPages = (): JSX.Element => {
                     ))}
                     <FinalPage />
                 </SwipeableViews>
-                <Box sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', px: { xs: 1, sm: 2 } }}>
                     <IconButton color='info' size='large' onClick={() => questionNumberHandler('next')} disabled={questionNumber === mbtiQuestions.length}>
                         <KeyboardArrowRightIcon />
                     </IconButton>

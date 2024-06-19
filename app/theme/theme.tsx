@@ -22,6 +22,15 @@ const lightTheme = createTheme({
         fontFamily: quickSand.style.fontFamily
     },
 })
+lightTheme.typography.h3 = {
+    fontSize: 48,
+    '@media (max-width:900px)': {
+        fontSize: 35,
+    },
+    '@media (max-width:600px) ': {
+        fontSize: 25,
+    },
+}
 const MainTheme = ({ children }: { children: JSX.Element }) => {
     return (
         <ThemeProvider theme={lightTheme}>

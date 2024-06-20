@@ -32,7 +32,7 @@ const page = () => {
         }
     }, [])
     return (
-        <Box sx={{ height: '100vh', backgroundColor: '#F9F5F4', display: 'flex', justifyContent: 'center', alignItems: 'start' }}>
+        <Box sx={{ height: '100dvh', backgroundColor: '#F9F5F4', display: 'flex', justifyContent: 'center', alignItems: 'start' }}>
             <Grid container spacing={2} width={1} sx={{ pt: 2, px: 1, justifyContent: 'center' }}>
                 <Grid xs={12} sm={7} md={5} lg={3} >
                     <Template height={300} alignItems='start'>
@@ -73,7 +73,13 @@ const page = () => {
                                 </Grid>
                             ))}
 
-
+                            <Box p={3} display={{ xs: 'block', sm: 'none' }}>
+                                <Box sx={{ border: `1px solid ${grey[300]}`, p: 2, borderRadius: 3, }}>
+                                    <Typography sx={{ color: grey[700], fontSize: { xs: 15, lg: 20 } }}>
+                                        these charts show the exact percentage of each symbol in your mbti type
+                                    </Typography>
+                                </Box>
+                            </Box>
                         </Grid>
                     </Template>
                 </Grid>

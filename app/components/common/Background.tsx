@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Avatar } from '@mui/material';
-import bg from '@/app/assets/bigi.jpg'
+import bg from '@/app/assets/bg.jpg'
 import Image from 'next/image';
 const Background = () => {
     return (

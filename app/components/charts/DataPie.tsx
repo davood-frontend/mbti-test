@@ -1,8 +1,6 @@
 import React from 'react';
 import { PieChart } from '@mui/x-charts';
-const DataPie = ({ data, colors }: { data: any, colors: string[] }) => {
-    const valueFormatter = (value: number) => `${value}%`;
-    // colors={['red','blue']}
+const DataPie = ({ data, colors }: { data: { value: number }[], colors: string[] }) => {
     return (
         <PieChart
             height={150}

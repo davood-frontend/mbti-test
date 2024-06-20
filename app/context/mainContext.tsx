@@ -10,7 +10,7 @@ type cotnextType = {
     setButtonLoading: React.Dispatch<React.SetStateAction<boolean>>
     finalResults: finalResultsType,
     setFinalResults: React.Dispatch<React.SetStateAction<finalResultsType>>
-    changeHandler: (item: number, questionType: string, prev: any, revalidate: boolean) => void
+    changeHandler: (item: number, questionType: string, prev: any , revalidate: boolean) => void
     questionNumberHandler: (action: 'next' | 'prev') => void,
     showResult: () => void
 }
@@ -27,7 +27,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     const [buttonLoading, setButtonLoading] = useState(false)
     const [finalResults, setFinalResults] = useState<finalResultsType>({ type: '', percentage: [] })
 
-    const changeHandler = (item: number, questionType: string, prev: any, revalidate: boolean) => {
+    const changeHandler = (item: number, questionType: string, prev: any , revalidate: boolean) => {
         const clone = { ...storeQuestions }
         if (!revalidate) {
             switch (questionType) {
@@ -73,10 +73,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
             setQuestionNumber(prev => prev - 1)
         }
     }
-    const dataCalculator = (data: number) => {
-        return Math.abs((data + 50) - 100)
-    }
-    const test = (item: any, types: string[], symbols: string[]) => {
+    const dataCalculator = (item: number, types: string[], symbols: string[]) => {
         const [firstLetter, secondLetter] = types
         const [firstWord, secondWord] = symbols
         let type = ''
@@ -94,10 +91,10 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         return { type: type, percentage: percentage }
     }
     const showResult = () => {
-        const temperarayData1 = test(storeQuestions.ie, ['Introversion', 'Extroversion'], ['i', 'e'])
-        const temperarayData2 = test(storeQuestions.ns, ['Intuitive', 'Sensing'], ['n', 's'])
-        const temperarayData3 = test(storeQuestions.ft, ['Feeling', 'Thinking'], ['f', 't'])
-        const temperarayData4 = test(storeQuestions.jp, ['Judging', 'Perceiving'], ['j', 'p'])
+        const temperarayData1 = dataCalculator(storeQuestions.ie, ['Introversion', 'Extroversion'], ['i', 'e'])
+        const temperarayData2 = dataCalculator(storeQuestions.ns, ['Intuitive', 'Sensing'], ['n', 's'])
+        const temperarayData3 = dataCalculator(storeQuestions.ft, ['Feeling', 'Thinking'], ['f', 't'])
+        const temperarayData4 = dataCalculator(storeQuestions.jp, ['Judging', 'Perceiving'], ['j', 'p'])
         const permanentData = [...temperarayData1.percentage, ...temperarayData2.percentage, ...temperarayData3.percentage, ...temperarayData4.percentage]
         const type = temperarayData1.type + temperarayData2.type + temperarayData3.type + temperarayData4.type
         setFinalResults({ type: type, percentage: permanentData })

@@ -3,11 +3,11 @@ import { Box } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 import { Typography, Avatar } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import DataPie from '../components/common/DataPie';
+import DataPie from '../components/charts/DataPie';
 import Image from 'next/image';
 import Grid from '@mui/material/Unstable_Grid2'
 import { typeSymbole } from '../constants/typeSymbols';
-import BasicSparkLine from '../components/common/DataSparkline';
+import BasicSparkLine from '../components/charts/DataSparkline';
 import Typed from 'typed.js';
 const Template = ({ children, height, alignItems }: { children: JSX.Element, height: number, alignItems: string }) => {
     return (
@@ -67,7 +67,7 @@ const page = () => {
                 <Grid xs={12} md={6}>
                     <Template height={380} alignItems='center'>
                         <Grid container width={1} height={1} alignItems='center' rowSpacing={3} py={{ xs: 2, md: 0 }}>
-                            {mianData?.percentage?.map((item: object[], index: number) => (
+                            {mianData?.percentage?.map((item: { value: number }[], index: number) => (
                                 <Grid xs={12} sm={6} key={index} sx={{ display: 'flex', justifyContent: 'center', px: { xs: 6, sm: 1 } }}>
                                     <DataPie data={item} colors={colors[index]} />
                                 </Grid>

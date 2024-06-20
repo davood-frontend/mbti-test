@@ -22,7 +22,7 @@ const FinalPage = () => {
             <Typography variant='h3' pb={10} textAlign='center' fontWeight={400}>
                 Congrags and well done, the test is finished. <br /> click on the following button to see the results.
             </Typography>
-            <Link href={!check ? '/' : 'result'}>
+            <Link href={!check ? 'questions' : 'result'}>
                 <LoadingButton variant='contained' color={!check ? 'primary' : 'success'} size='large' onClick={handleChange} loading={buttonLoading} loadingPosition='start' startIcon={!check ? <ListAltIcon /> : <CheckIcon />} >{!check ? 'check my type' : 'see the result'}</LoadingButton>
             </Link>
         </Box >

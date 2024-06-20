@@ -4,6 +4,7 @@ export type option = {
 }[]
 export type mbtiQuestions = { question: string, questionType: string, options: option }[]
 export type mbtiQuestion = { question: string, questionType: string, options: option }
+export type questionOptionType = {value : string, score : number}
 export const mbtiQuestions: mbtiQuestions = [
     { question: 'how many people would you invite to a party?', options: [{ value: '1 person', score: -12 }, { value: '2 - 4 people', score: -6 }, { value: '4 - 6 people', score: 6 }, { value: '6 - more', score: 12 }], questionType: 'ie' },
     { question: 'how often do you think about fictional stuff?', options: [{ value: 'always', score: -12 }, { value: 'sometimes', score: -6 }, { value: 'rarely', score: 6 }, { value: 'never', score: 12 }], questionType: 'ns' },

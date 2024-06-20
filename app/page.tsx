@@ -8,7 +8,6 @@ const page = () => {
         Welcome to the MBTI test app. <br /> you can find your mbti type by answering the questions
       </Typography>
       <Link href='questions'>
-        {/* <LoadingButton variant='contained' color={!check ? 'primary' : 'success'} size='large' onClick={handleChange} loading={buttonLoading} loadingPosition='start' startIcon={!check ? <ListAltIcon /> : <CheckIcon />} >{!check ? 'check my type' : 'see the result'}</LoadingButton> */}
         <Button color='primary' size='large' variant='contained'>
           See the questions
         </Button>

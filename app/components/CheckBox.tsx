@@ -2,17 +2,14 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2'
 import { Button } from '@mui/material';
-import { mbtiQuestion } from './constants/questions';
 import { useMainContext } from '../context/mainContext';
-export type oneOption = {
-    value: string,
-    score: number
-}
+import { questionOptionType, mbtiQuestion } from '../constants/questions';
+
 const CheckBox = ({ data }: { data: mbtiQuestion }) => {
     const { changeHandler } = useMainContext()
-    const [currentOption, setCurrentOption] = useState<oneOption | null>(null)
+    const [currentOption, setCurrentOption] = useState<questionOptionType | null>(null)
     const [shouldRevalidate, setShouldRevalidate] = useState(false)
-    const onDataChange = (item: any) => {
+    const onDataChange = (item: questionOptionType) => {
         setCurrentOption(item)
         changeHandler(item.score, data.questionType, currentOption?.score, shouldRevalidate)
         setShouldRevalidate(true)

@@ -1,12 +1,18 @@
 import React from 'react';
-import { Box } from '@mui/material';
-import QuestionPages from './components/QuestionPages';
-import Background from './components/common/Background';
+import { Box, Typography, Button } from '@mui/material';
+import Link from 'next/link';
 const page = () => {
   return (
-    <Box sx={{ position: 'relative' }}>
-      <Background />
-      <QuestionPages />
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', height: '100dvh', px: 3 }}>
+      <Typography variant='h3' pb={10} textAlign='center' fontWeight={400}>
+        Welcome to the MBTI test app. <br /> you can find your mbti type by answering the questions
+      </Typography>
+      <Link href='questions'>
+        {/* <LoadingButton variant='contained' color={!check ? 'primary' : 'success'} size='large' onClick={handleChange} loading={buttonLoading} loadingPosition='start' startIcon={!check ? <ListAltIcon /> : <CheckIcon />} >{!check ? 'check my type' : 'see the result'}</LoadingButton> */}
+        <Button color='primary' size='large' variant='contained'>
+          See the questions
+        </Button>
+      </Link>
     </Box >
   );
 };

@@ -8,12 +8,14 @@ import SwipeableViews from 'react-swipeable-views'
 import { mbtiQuestions } from '../constants/questions';
 import FinalPage from './FinalPage';
 import { useMainContext } from '../context/mainContext';
+import SnackBar from './common/SnackBar';
 const QuestionPages = (): JSX.Element => {
-    const { questionNumber, questionNumberHandler } = useMainContext()
+    const { questionNumber, questionNumberHandler, snackBar, setSnackBar } = useMainContext()
 
 
     return (
         <Box>
+            <SnackBar snackBar={snackBar} setSnackBar={setSnackBar} />
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', px: { xs: 1, sm: 2 } }} >
                     <IconButton color='info' size='large' onClick={() => questionNumberHandler('prev')} disabled={questionNumber === 0}>

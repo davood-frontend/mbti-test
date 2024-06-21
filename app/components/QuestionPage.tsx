@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Chip } from '@mui/material';
 import CheckBox from './CheckBox';
-import { mbtiQuestion } from './constants/questions';
+import { mbtiQuestion } from '../constants/questions';
 const QuestionPage = ({ number, data, totalQuestions }: { number: number, data: mbtiQuestion, totalQuestions: number }) => {
     return (
         <Box sx={{ maxWidth: 800, mx: 'auto', textAlign: 'center', height: '100dvh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

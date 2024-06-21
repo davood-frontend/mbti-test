@@ -10,14 +10,22 @@ type cotnextType = {
     setButtonLoading: React.Dispatch<React.SetStateAction<boolean>>
     finalResults: finalResultsType,
     setFinalResults: React.Dispatch<React.SetStateAction<finalResultsType>>
-    changeHandler: (item: number, questionType: string, prev: any , revalidate: boolean) => void
+    changeHandler: (item: number, questionType: string, prev: any, revalidate: boolean) => void
     questionNumberHandler: (action: 'next' | 'prev') => void,
-    showResult: () => void
+    showResult: () => void,
+    snackBar: snackBarType,
+    setSnackBar: React.Dispatch<React.SetStateAction<snackBarType>>
 }
 type finalResultsType = {
     type: string,
     percentage: { label: string, value: number }[][]
 }
+type snackBarType = {
+    open: boolean,
+    message: string
+    severity: string;
+}
+
 const MainContext = createContext<cotnextType | null>(null)
 const ISSERVER = typeof window === "undefined";
 
@@ -26,8 +34,13 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     const [storeQuestions, setStoreQuestions] = useState({ ie: 0, ns: 0, ft: 0, jp: 0 })
     const [buttonLoading, setButtonLoading] = useState(false)
     const [finalResults, setFinalResults] = useState<finalResultsType>({ type: '', percentage: [] })
+    const [snackBar, setSnackBar] = useState({
+        open: false,
+        message: '',
+        severity: '',
+    })
 
-    const changeHandler = (item: number, questionType: string, prev: any , revalidate: boolean) => {
+    const changeHandler = (item: number, questionType: string, prev: any, revalidate: boolean) => {
         const clone = { ...storeQuestions }
         if (!revalidate) {
             switch (questionType) {
@@ -102,7 +115,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     }
 
     return (
-        <MainContext.Provider value={{ questionNumber, setQuestionNumber, setStoreQuestions, storeQuestions, buttonLoading, setButtonLoading, finalResults, setFinalResults, changeHandler, questionNumberHandler, showResult }}>
+        <MainContext.Provider value={{ questionNumber, setQuestionNumber, setStoreQuestions, storeQuestions, buttonLoading, setButtonLoading, finalResults, setFinalResults, changeHandler, questionNumberHandler, showResult, setSnackBar, snackBar }}>
             {children}
         </MainContext.Provider>
     )

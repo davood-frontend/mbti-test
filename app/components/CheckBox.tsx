@@ -6,7 +6,7 @@ import { useMainContext } from '../context/mainContext';
 import { questionOptionType, mbtiQuestion } from '../constants/questions';
 
 const CheckBox = ({ data }: { data: mbtiQuestion }) => {
-    const { changeHandler } = useMainContext()
+    const { changeHandler} = useMainContext()
     const [currentOption, setCurrentOption] = useState<questionOptionType | null>(null)
     const [shouldRevalidate, setShouldRevalidate] = useState(false)
     const onDataChange = (item: questionOptionType) => {

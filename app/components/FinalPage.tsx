@@ -6,19 +6,17 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import Link from 'next/link';
 import { useMainContext } from '@/app/context/mainContext';
 const FinalPage = () => {
-    const { showResult, buttonLoading, setButtonLoading, storeQuestions, setSnackBar } = useMainContext()
+    const { showResult, buttonLoading, setButtonLoading, setSnackBar, answeredQuestions } = useMainContext()
     const [check, setCheck] = useState(false)
 
     const handleChange = () => {
         !check && setButtonLoading(true)
 
-
         setTimeout(() => {
             setButtonLoading(false)
-            if (Object.values(storeQuestions).some(val => val === 0)) {
-                console.log('zero detected')
+            if (answeredQuestions.every(item => item !== true)) {
                 setSnackBar({ open: true, message: 'please answer all questions', severity: 'error' })
-
+                    
             } else {
                 setCheck(true)
                 showResult()

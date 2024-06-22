@@ -5,14 +5,17 @@ import { Button } from '@mui/material';
 import { useMainContext } from '../context/mainContext';
 import { questionOptionType, mbtiQuestion } from '../constants/questions';
 
-const CheckBox = ({ data }: { data: mbtiQuestion }) => {
-    const { changeHandler} = useMainContext()
+const CheckBox = ({ data, questionNumber }: { data: mbtiQuestion, questionNumber: number }) => {
+    const { changeHandler, setAnsweredQuestions, answeredQuestions } = useMainContext()
     const [currentOption, setCurrentOption] = useState<questionOptionType | null>(null)
     const [shouldRevalidate, setShouldRevalidate] = useState(false)
     const onDataChange = (item: questionOptionType) => {
         setCurrentOption(item)
         changeHandler(item.score, data.questionType, currentOption?.score, shouldRevalidate)
         setShouldRevalidate(true)
+        const clone = [...answeredQuestions]
+        clone[questionNumber] = true
+        setAnsweredQuestions(clone)
     }
     return (
         <Grid container spacing={2} sx={{ width: 1 }}>

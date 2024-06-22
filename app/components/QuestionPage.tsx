@@ -11,7 +11,7 @@ const QuestionPage = ({ number, data, totalQuestions }: { number: number, data: 
                 {data.question}
             </Typography>
             <Box sx={{ mt: 8, display: 'flex', justifyContent: 'center' }}>
-                <CheckBox data={data} />
+                <CheckBox data={data} questionNumber={number}/>
             </Box>
 
         </Box>

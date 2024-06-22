@@ -15,6 +15,8 @@ type cotnextType = {
     showResult: () => void,
     snackBar: snackBarType,
     setSnackBar: React.Dispatch<React.SetStateAction<snackBarType>>
+    answeredQuestions: boolean[],
+    setAnsweredQuestions: React.Dispatch<React.SetStateAction<boolean[]>>
 }
 type finalResultsType = {
     type: string,
@@ -34,6 +36,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     const [storeQuestions, setStoreQuestions] = useState({ ie: 0, ns: 0, ft: 0, jp: 0 })
     const [buttonLoading, setButtonLoading] = useState(false)
     const [finalResults, setFinalResults] = useState<finalResultsType>({ type: '', percentage: [] })
+    const [answeredQuestions, setAnsweredQuestions] = useState([false])
     const [snackBar, setSnackBar] = useState({
         open: false,
         message: '',
@@ -98,7 +101,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
             type = firstWord
             percentage.push([{ label: firstLetter, value: Math.abs(item) + 50 }, { label: secondLetter, value: (item + 50) }])
         } else if (item === 0) {
-            type = 'x'
+            type = Math.random() < 0.5 ? firstWord : secondWord
             percentage.push([{ label: secondLetter, value: 50 }, { label: firstLetter, value: 50 }])
         }
         return { type: type, percentage: percentage }
@@ -115,7 +118,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     }
 
     return (
-        <MainContext.Provider value={{ questionNumber, setQuestionNumber, setStoreQuestions, storeQuestions, buttonLoading, setButtonLoading, finalResults, setFinalResults, changeHandler, questionNumberHandler, showResult, setSnackBar, snackBar }}>
+        <MainContext.Provider value={{ questionNumber, setQuestionNumber, setStoreQuestions, storeQuestions, buttonLoading, setButtonLoading, finalResults, setFinalResults, changeHandler, questionNumberHandler, showResult, setSnackBar, snackBar, answeredQuestions, setAnsweredQuestions }}>
             {children}
         </MainContext.Provider>
     )

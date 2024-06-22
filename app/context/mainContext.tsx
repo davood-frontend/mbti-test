@@ -1,5 +1,6 @@
 'use client'
 import React, { createContext, useContext, useState } from "react";
+import { mbtiQuestions } from "../constants/questions";
 type storeQuestionsType = { ie: number, ns: number, ft: number, jp: number }
 type cotnextType = {
     questionNumber: number,
@@ -28,6 +29,7 @@ type snackBarType = {
     severity: string;
 }
 
+let initialAnsweredQuestions = new Array(mbtiQuestions.length).fill(false)
 const MainContext = createContext<cotnextType | null>(null)
 const ISSERVER = typeof window === "undefined";
 
@@ -36,7 +38,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     const [storeQuestions, setStoreQuestions] = useState({ ie: 0, ns: 0, ft: 0, jp: 0 })
     const [buttonLoading, setButtonLoading] = useState(false)
     const [finalResults, setFinalResults] = useState<finalResultsType>({ type: '', percentage: [] })
-    const [answeredQuestions, setAnsweredQuestions] = useState([false])
+    const [answeredQuestions, setAnsweredQuestions] = useState(initialAnsweredQuestions)
     const [snackBar, setSnackBar] = useState({
         open: false,
         message: '',

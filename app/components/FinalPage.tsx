@@ -14,9 +14,9 @@ const FinalPage = () => {
 
         setTimeout(() => {
             setButtonLoading(false)
-            if (answeredQuestions.every(item => item !== true)) {
+            if (answeredQuestions.includes(false)) {
                 setSnackBar({ open: true, message: 'please answer all questions', severity: 'error' })
-                    
+
             } else {
                 setCheck(true)
                 showResult()

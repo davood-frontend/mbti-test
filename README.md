@@ -3,9 +3,6 @@
 
 a project built using NEXTJS + MUI + TYPESCRIPT that definds your mbti type and shows you the exact percentage of each symbol in your type.
 
-## To visit
-to visit the website you can use the bellow link (the project is not responsive yet because this is the demo version of website and other features will be added soon) \
-https://mbti-test-beige.vercel.app/
 ## Contributing
 
 Any type of contribution is welcome! Here are some ways you can get started:
